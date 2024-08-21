@@ -5,6 +5,7 @@ public class DragAndThrowController : MonoBehaviour
     private Vector2 startPoint;
     private Vector2 endPoint;
     private bool isDragging = false;
+    private bool isClickLocked = false; // 左クリックロック用のフラグ
     private Rigidbody2D rb;
 
     public float forceMultiplier = 5.0f;
@@ -13,16 +14,33 @@ public class DragAndThrowController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = true; // Disable physics simulation at the start
+        rb.isKinematic = true; // 最初に物理シミュレーションを無効にする
+
+        if (house == null)
+        {
+            Debug.LogError("Houseオブジェクトがアサインされていません。");
+        }
     }
 
     void Update()
     {
         HandleDragging();
+
+        // 右クリックが押されたときにシーンをリロードする
+        if (Input.GetMouseButtonDown(1)) // 右クリック
+        {
+            GameManager.Instance.RestartGame();
+        }
     }
 
     private void HandleDragging()
     {
+        if (isClickLocked)
+        {
+            // 左クリックがロックされている場合は何もしない
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             startPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -33,15 +51,12 @@ public class DragAndThrowController : MonoBehaviour
         {
             endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 force = (startPoint - endPoint) * forceMultiplier;
-            rb.isKinematic = false; // Enable physics simulation
+            rb.isKinematic = false; // 物理シミュレーションを有効にする
             rb.AddForce(force, ForceMode2D.Impulse);
             isDragging = false;
-        }
 
-        // Reload the scene when the R key is pressed
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            GameManager.Instance.RestartGame();
+            // 左クリックをロックする
+            isClickLocked = true;
         }
     }
 
@@ -49,14 +64,16 @@ public class DragAndThrowController : MonoBehaviour
     {
         if (collision.gameObject == house)
         {
-            rb.velocity = Vector2.zero; // Stop any remaining movement
-            rb.angularVelocity = 0f; // Stop any rotation
+            rb.velocity = Vector2.zero; // 残っている動きを停止する
+            rb.angularVelocity = 0f; // 回転も停止する
 
-            // Hide the house sprite
+            // 家のスプライトを非表示にする
             house.GetComponent<SpriteRenderer>().enabled = false;
 
-            // Notify the GameManager
+            // GameManagerに通知する
             GameManager.Instance.OnGameClear();
+
+            // AudioManager.Instance.PlayExplosionSound();
         }
     }
 }
