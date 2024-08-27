@@ -46,4 +46,5 @@ public class GameManager : MonoBehaviour
         // Load the SampleScene
         SceneManager.LoadScene("SampleScene");
     }
+
 }
