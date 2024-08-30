@@ -47,7 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSource: {fileID: -5370854267700030589, guid: ca81df6744abe014f92d33a065a8b505, type: 3}
   sfxSource: {fileID: -119535133268410151, guid: 207367b5f66bd2148a70e184bfc5bdba, type: 3}
+  explosionAudioSource: {fileID: 0}
   bgmClip: {fileID: 8300000, guid: 7fa950b96131c1f47b1491a51d3e3b62, type: 3}
+  bgmSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
 --- !u!82 &1656022035468709741
 AudioSource:
   m_ObjectHideFlags: 0
@@ -60,7 +63,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7fa950b96131c1f47b1491a51d3e3b62, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.11
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

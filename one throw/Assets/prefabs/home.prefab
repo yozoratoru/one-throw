@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5133149584588540761}
   - component: {fileID: 1057252569516262197}
   m_Layer: 0
-  m_Name: BrownHouse_x2 1
+  m_Name: home
   m_TagString: Home
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

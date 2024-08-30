@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8855516276309586673}
   - component: {fileID: 5815616598102530006}
   m_Layer: 0
-  m_Name: Forest_terrain_dirt_grass(fall)_128px_4 (80)
+  m_Name: soil block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
