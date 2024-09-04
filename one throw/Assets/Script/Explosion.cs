@@ -8,9 +8,11 @@ public class Explosion : MonoBehaviour
 
     private void Start()
     {
-        if (explosionSound != null)
+        // 既存のAudioSourceコンポーネントを取得
+        explosionAudioSource = GetComponent<AudioSource>();
+
+        if (explosionAudioSource != null && explosionSound != null)
         {
-            explosionAudioSource = gameObject.AddComponent<AudioSource>(); // Explosion用のAudioSourceを追加
             explosionAudioSource.clip = explosionSound;
             explosionAudioSource.loop = false; // ループを無効にする
 
@@ -21,6 +23,10 @@ public class Explosion : MonoBehaviour
             }
 
             explosionAudioSource.Play(); // explosionSoundを再生
+        }
+        else
+        {
+            Debug.LogWarning("AudioSource or explosionSound is missing.");
         }
     }
 }

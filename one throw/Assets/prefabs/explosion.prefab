@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2010237227496811361}
   - component: {fileID: 6345427539968520801}
   - component: {fileID: 7100163500980120243}
-  - component: {fileID: -1352135684576071231}
-  - component: {fileID: 4597520636635570985}
+  - component: {fileID: -6919766347904072901}
+  - component: {fileID: 3014235684419247551}
   m_Layer: 0
   m_Name: explosion
   m_TagString: Untagged
@@ -123,7 +123,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuseSound: {fileID: 0}
   explosionSound: {fileID: 8300000, guid: 3213a9f75caf54a43a3a20a29f4c6d1f, type: 3}
---- !u!82 &-1352135684576071231
+--- !u!114 &-6919766347904072901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7549220457692981161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1395f8729b81b641b831c73b31e2983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionSound: {fileID: 8300000, guid: 3213a9f75caf54a43a3a20a29f4c6d1f, type: 3}
+--- !u!82 &3014235684419247551
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +148,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.15884328
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -219,16 +232,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4597520636635570985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7549220457692981161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1395f8729b81b641b831c73b31e2983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionSound: {fileID: 8300000, guid: 3213a9f75caf54a43a3a20a29f4c6d1f, type: 3}

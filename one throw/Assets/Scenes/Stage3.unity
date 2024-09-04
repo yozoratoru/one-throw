@@ -1063,7 +1063,7 @@ GameObject:
   m_Component:
   - component: {fileID: 759311826}
   m_Layer: 0
-  m_Name: block
+  m_Name: stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3707,7 +3707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 4434706477490305622}
   sfxSource: {fileID: 4702950352932086624}
-  explosionAudioSource: {fileID: -1352135684576071231, guid: 207367b5f66bd2148a70e184bfc5bdba, type: 3}
+  explosionAudioSource: {fileID: 3014235684419247551, guid: 207367b5f66bd2148a70e184bfc5bdba, type: 3}
   bgmClip: {fileID: 8300000, guid: 7fa950b96131c1f47b1491a51d3e3b62, type: 3}
   bgmSlider: {fileID: 6930945207881660618}
   sfxSlider: {fileID: 14565551427759934}

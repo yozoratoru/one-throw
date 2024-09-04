@@ -188,6 +188,7 @@ Transform:
   - {fileID: 2023245046}
   - {fileID: 1150395065}
   - {fileID: 310341210}
+  - {fileID: 1907613786}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &46506039
@@ -2033,12 +2034,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907613784}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0021, y: -0.0284, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.3921003, y: 2.4716, z: 0}
   m_LocalScale: {x: 1.7708, y: 1.0023, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 39845565}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1929661543
 PrefabInstance:
@@ -4107,7 +4108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 9153331344584754695}
   sfxSource: {fileID: 1208955466247492581}
-  explosionAudioSource: {fileID: -1352135684576071231, guid: 207367b5f66bd2148a70e184bfc5bdba, type: 3}
+  explosionAudioSource: {fileID: 3014235684419247551, guid: 207367b5f66bd2148a70e184bfc5bdba, type: 3}
   bgmClip: {fileID: 8300000, guid: 7fa950b96131c1f47b1491a51d3e3b62, type: 3}
   bgmSlider: {fileID: 4002797672178997910}
   sfxSlider: {fileID: 6309787157620395362}
@@ -5204,10 +5205,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 2089632500}
   - {fileID: 49743019179878885}
-  - {fileID: 1907613786}
   - {fileID: 39845565}
   - {fileID: 3039876008968925080}
   - {fileID: 2386315140724013547}
-  - {fileID: 1393290506398070355}
   - {fileID: 3114919032758439201}
+  - {fileID: 1393290506398070355}
   - {fileID: 3983044197111810882}

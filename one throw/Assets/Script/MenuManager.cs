@@ -28,6 +28,7 @@ public class MenuManager : MonoBehaviour
         else
         {
             Time.timeScale = 1f; // ゲームを再開
+            GameManager.Instance.RestartGame();// ゲームを再開したときシーンをリロードする
         }
     }
 
