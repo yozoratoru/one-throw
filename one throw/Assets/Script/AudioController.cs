@@ -2,32 +2,44 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    public AudioClip fuseSound;       // SE1: プレハブが存在する間ループで流れるサウンド
-    public AudioClip explosionSound;  // SE2: プレハブがインスタンスされたときに1回流れるサウンド
+    public AudioClip fuseSound;       // Sound effect for the fuse
+    public AudioClip explosionSound;  // Sound effect for the explosion
 
     private AudioSource audioSource;
 
     private void Start()
     {
-        // AudioSourceのチェックと追加
+        // Check and add AudioSource if not already present
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>(); // AudioSourceを追加
+            audioSource = gameObject.AddComponent<AudioSource>(); // Add AudioSource
         }
 
-        // SE1: fuseSoundをループ再生
+        // Play the fuse sound effect in a loop while the object exists
         if (fuseSound != null)
         {
             audioSource.clip = fuseSound;
             audioSource.loop = true;
             audioSource.Play();
         }
+    }
 
-        // SE2: プレハブがインスタンスされたときに1回流す
+    public void PlayExplosionSound()
+    {
         if (explosionSound != null)
         {
-            AudioManager.Instance.PlayExplosionSound(explosionSound);
+            // Use AudioManager to play the explosion sound effect once
+            AudioManager.Instance.PlaySFX(explosionSound);
+        }
+    }
+
+    // This function could be called to stop the fuse sound if needed
+    public void StopFuseSound()
+    {
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
         }
     }
 }
