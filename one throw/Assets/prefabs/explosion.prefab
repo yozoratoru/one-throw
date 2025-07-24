@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8880d4a153ea98a4394e7ef0a1e4c0d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuseSound: {fileID: 0}
+  fuseSound: {fileID: 8300000, guid: db9203d5f7ce87647bbcdb01c105a2b2, type: 3}
   explosionSound: {fileID: 8300000, guid: 3213a9f75caf54a43a3a20a29f4c6d1f, type: 3}
 --- !u!114 &-6919766347904072901
 MonoBehaviour:
@@ -148,7 +148,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.22949883
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
