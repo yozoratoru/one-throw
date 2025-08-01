@@ -1422,6 +1422,7 @@ GameObject:
   - component: {fileID: 677687765}
   - component: {fileID: 677687764}
   - component: {fileID: 677687763}
+  - component: {fileID: 677687766}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1497,12 +1498,30 @@ Transform:
   m_GameObject: {fileID: 677687762}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.22, y: 0, z: -10}
+  m_LocalPosition: {x: -5.22, y: -0.000000021675017, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &677687766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677687762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34180df64ebc1284882599163c91a1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 677687764}
+  zoomSize: 3
+  zoomDuration: 1
+  moveDistanceX: -5
+  moveDistanceY: -1
+  moveDuration: 1
 --- !u!4 &684937671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1133754997460915112, guid: a020b5abafccffa408aab418774fa5b4, type: 3}
@@ -1845,6 +1864,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1133754997460915112, guid: a020b5abafccffa408aab418774fa5b4, type: 3}
   m_PrefabInstance: {fileID: 1964233681}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &895949537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 999972877668253992, guid: ff1bb28d549d7ea4d9e254ee782304ee, type: 3}
+  m_PrefabInstance: {fileID: 1519057627}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a25a88b710f44944b702a2c50ca2038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &908032161 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1133754997460915112, guid: a020b5abafccffa408aab418774fa5b4, type: 3}
@@ -2794,6 +2824,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 684682205789623688, guid: ff1bb28d549d7ea4d9e254ee782304ee, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 684682205789623688, guid: ff1bb28d549d7ea4d9e254ee782304ee, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 684682205789623688, guid: ff1bb28d549d7ea4d9e254ee782304ee, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1272841203120124776, guid: ff1bb28d549d7ea4d9e254ee782304ee, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2817,6 +2859,14 @@ PrefabInstance:
     - target: {fileID: 3178479612610546146, guid: ff1bb28d549d7ea4d9e254ee782304ee, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetSFXVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218298855122785698, guid: ff1bb28d549d7ea4d9e254ee782304ee, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218298855122785698, guid: ff1bb28d549d7ea4d9e254ee782304ee, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3870539835826072427, guid: ff1bb28d549d7ea4d9e254ee782304ee, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4211,7 +4261,7 @@ PrefabInstance:
     - target: {fileID: 7905876974291573383, guid: ca81df6744abe014f92d33a065a8b505, type: 3}
       propertyPath: gameClearDisplay
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 895949537}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

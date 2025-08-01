@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
 
     public void OnGameClear()
     {
+        CameraController.Instance.ZoomInOnClear(); // Zoom in and move the camera to the right
+        CameraController.Instance.MoveUp(); // Move the camera up
+        CameraController.Instance.MoveDown(); // Move the camera down
         // Delay the Game Clear text display by 1 second
         Invoke("ShowGameClearWithDelay", 1f);
 
