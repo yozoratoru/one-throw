@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MenuManager : MonoBehaviour
+public class MenuManager : MonoBehaviour, IMenuButton
 {
     // メニューのパネルを参照するための変数
     public GameObject menuPanel;
@@ -13,7 +13,11 @@ public class MenuManager : MonoBehaviour
         // 最初にメニューを非表示に設定
         menuPanel.SetActive(false);
     }
-
+    // ボタンがクリックされたときに呼び出されるメソッド
+    public void OnMenuButtonClicked()
+    {
+        ToggleMenu();
+    }
     // メニューの表示状態を切り替えるメソッド
     public void ToggleMenu()
     {
