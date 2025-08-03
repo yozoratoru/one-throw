@@ -485,6 +485,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a020b5abafccffa408aab418774fa5b4, type: 3}
+--- !u!4 &99534192 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3039876009082588817, guid: 014165dd28dbacb4aa756d957baa8205, type: 3}
+  m_PrefabInstance: {fileID: 575420800}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &108263144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,12 +1521,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34180df64ebc1284882599163c91a1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 677687764}
-  zoomSize: 3
-  zoomDuration: 1
-  moveDistanceX: -5
-  moveDistanceY: -1
-  moveDuration: 1
+  player: {fileID: 99534192}
+  zoomSize: 2
+  duration: 1.5
 --- !u!4 &684937671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1133754997460915112, guid: a020b5abafccffa408aab418774fa5b4, type: 3}

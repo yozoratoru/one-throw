@@ -3,62 +3,29 @@ using DG.Tweening;
 
 public class CameraController : MonoBehaviour
 {
+    public Transform player;        // プレイヤーをInspectorで設定
+    public float zoomSize = 2f;     // ズーム後のサイズ
+    public float duration = 1.5f;   // アニメーション時間
     public static CameraController Instance { get; private set; }
-    public Camera mainCamera;
-    public float zoomSize = 3f;       // ズーム後のOrthographic Size
-    public float zoomDuration = 1f;   // ズームアニメーションの時間
-    public float moveDistanceX = 3f;  // 横移動距離
-    public float moveDistanceY = 2f;  // 縦移動距離
-    public float moveDuration = 1f;   // 移動時間（秒）
-
     void Awake()
     {
-        if (Instance == null)
+        // シングルトン初期化
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject); // 重複防止
-        }
-    }
-
-    void Start()
-    {
-        if (mainCamera == null)
-        {
-            mainCamera = Camera.main;
+            Destroy(gameObject);
+            return;
         }
 
-        // カメラをOrthographicに設定（これ重要）
-        mainCamera.orthographic = true;
+        Instance = this;
     }
 
-    // ズームと横移動を同時に行う
-    public void ZoomInOnClear()
+    public void PayerInCamera()
     {
-        // DOTweenでOrthographic Sizeをズームサイズまでアニメーションさせる
-        // DOTweenでOrthographic Sizeをズームサイズまでアニメーションさせる
-        mainCamera.DOOrthoSize(zoomSize, zoomDuration).SetEase(Ease.InOutQuad);
-         // transform.position のx座標をmoveDistanceだけ増やして移動
-        // transform.position のx座標をmoveDistanceだけ増やして移動
-        transform.DOMoveX(transform.position.x + moveDistanceX, moveDuration)
-                 .SetEase(Ease.Linear);
+        // カメラをズーム＆移動（同時に）
+        Vector3 targetPos = new Vector3(player.position.x, player.position.y, -10f); // カメラはZ = -10固定
+
+        // 並行に実行
+        Camera.main.DOOrthoSize(zoomSize, duration).SetEase(Ease.InOutSine);
+        Camera.main.transform.DOMove(targetPos, duration).SetEase(Ease.InOutSine);
     }
-
-    // 上に移動
-    public void MoveUp()
-    {
-        transform.DOMoveY(transform.position.y + moveDistanceY, moveDuration)
-                .SetEase(Ease.Linear);
-    }
-
-    // 下に移動
-    public void MoveDown()
-    {
-        transform.DOMoveY(transform.position.y - moveDistanceY, moveDuration)
-                .SetEase(Ease.Linear);
-    }
-
-
 }
