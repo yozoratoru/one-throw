@@ -44,6 +44,8 @@ public class DragAndThrowController : MonoBehaviour
     void Update()
     {
         HandleDragging(); // マウス操作でドラッグ処理を行う
+        CheckOutOfCamera(); // カメラ外に出たかチェック
+        
 
         // 右クリックでゲームをリスタート
         if (Input.GetMouseButtonDown(1)) // 右クリック
@@ -51,6 +53,17 @@ public class DragAndThrowController : MonoBehaviour
             GameManager.Instance.RestartGame();
         }
     }
+    private void CheckOutOfCamera()
+{
+    Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+
+    // xとyが [0,1] の範囲外なら画面外（Zは距離なので無視）
+    if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
+    {
+        GameManager.Instance.RestartGame();
+    }
+}
+
 
     // マウスによるドラッグ・投げ処理
     private void HandleDragging()
