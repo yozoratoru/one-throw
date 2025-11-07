@@ -2111,19 +2111,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5086649169335888009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6144057397975565961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79011c63e7b2a3429b693fb9ebb3fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuPanel: {fileID: 0}
 --- !u!222 &5150387256749732859
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2278,7 +2265,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3776103083633486015}
-  - component: {fileID: 5086649169335888009}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged

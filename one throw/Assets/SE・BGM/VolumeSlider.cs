@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class VolumeSlider : MonoBehaviour
 {
     [Header("スライダー参照")]

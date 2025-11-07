@@ -27,7 +27,6 @@ public class SoundManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-
             // AudioClip名をキーとして辞書に登録
             foreach (var clip in seClips)
             {
@@ -35,6 +34,20 @@ public class SoundManager : MonoBehaviour
                 {
                     seClipDict.Add(clip.name, clip);
                 }
+            }
+            //Debug.Log($"[SoundManager] Awake: seClips={seClips.Count} seClipDict={seClipDict.Count} bgmAudioSource={(bgmAudioSource!=null)} seAudioSourcePrefab={(seAudioSourcePrefab!=null)}");
+
+            // ビルド時にインスペクタの参照が切れている可能性があるため、null の場合は動的に作成してフォールバック
+            if (bgmAudioSource == null)
+            {
+                var go = new GameObject("BGM_AudioSource",
+                    typeof(AudioSource));
+                go.transform.SetParent(transform);
+                bgmAudioSource = go.GetComponent<AudioSource>();
+                bgmAudioSource.playOnAwake = false;
+                bgmAudioSource.loop = true;
+                bgmAudioSource.spatialBlend = 0f;
+                //Debug.Log("[SoundManager] Awake: bgmAudioSource was null, created fallback AudioSource.");
             }
         }
         else
@@ -49,7 +62,7 @@ public class SoundManager : MonoBehaviour
     public void SetBGMVolume(float volume)
     {
         bgmAudioSource.volume = Mathf.Clamp01(volume) * maxVolume;
-    }
+            }
 
     /// <summary>
     /// SEの音量を設定（0〜1）
@@ -57,19 +70,26 @@ public class SoundManager : MonoBehaviour
     public void SetSEVolume(float volume)
     {
         currentSEVolume = Mathf.Clamp01(volume) * maxSEVolume;
+        //Debug.Log("[SoundManager] currentSEVolume: new=" + currentSEVolume);
 
-        foreach (var se in seAudioSources)
+        // 現在保持している再生中のAudioSourceに対して音量更新（null要素を取り除く）
+        for (int i = seAudioSources.Count - 1; i >= 0; i--)
         {
-            if (se != null)
+            var se = seAudioSources[i];
+            if (se == null)
             {
-                se.volume = currentSEVolume;
+                seAudioSources.RemoveAt(i);
+                continue;
             }
+            se.volume = currentSEVolume;
         }
 
         if (loopSEAudioSource != null)
         {
             loopSEAudioSource.volume = currentSEVolume;
         }
+
+        //Debug.Log($"[SoundManager] SetSEVolume: input={volume} currentSEVolume={currentSEVolume} activeSECount={seAudioSources.Count}");
     }
 
     /// <summary>
@@ -79,11 +99,27 @@ public class SoundManager : MonoBehaviour
     {
         if (seClipDict.TryGetValue(seName, out AudioClip clip))
         {
-            AudioSource se = Instantiate(seAudioSourcePrefab, transform);
+            AudioSource se = null;
+            if (seAudioSourcePrefab != null)
+            {
+                se = Instantiate(seAudioSourcePrefab, transform);
+            }
+            else
+            {
+                // フォールバック: プレハブが割り当てられていない（ビルドで参照切れなど）の場合は動的生成
+                var go = new GameObject($"SE_AudioSource_{seName}");
+                go.transform.SetParent(transform);
+                se = go.AddComponent<AudioSource>();
+            }
+
             se.clip = clip;
+            // 2Dにして距離減衰の影響を受けないようにする（必要ならInspectorで変更してください）
+            se.spatialBlend = 0f;
+            se.playOnAwake = false;
             se.volume = currentSEVolume;
             se.Play();
             seAudioSources.Add(se);
+            //Debug.Log($"[SoundManager] PlaySE: '{seName}' clipLength={(clip!=null?clip.length:0f)} currentSEVolume={currentSEVolume} createdVolume={se.volume} (usedPrefab={(seAudioSourcePrefab!=null)})");
             StartCoroutine(DestroyAfterPlay(se));
         }
         else
@@ -99,13 +135,27 @@ public class SoundManager : MonoBehaviour
     {
         if (loopSEAudioSource != null) return;
 
+            Debug.Log($"[SoundManager] currentSEVolume={currentSEVolume}");
         if (seClipDict.TryGetValue(seName, out AudioClip clip))
         {
-            loopSEAudioSource = Instantiate(seAudioSourcePrefab, transform);
+            if (seAudioSourcePrefab != null)
+            {
+                loopSEAudioSource = Instantiate(seAudioSourcePrefab, transform);
+            }
+            else
+            {
+                var go = new GameObject($"LoopSE_AudioSource_{seName}");
+                go.transform.SetParent(transform);
+                loopSEAudioSource = go.AddComponent<AudioSource>();
+            }
+
             loopSEAudioSource.clip = clip;
+            loopSEAudioSource.spatialBlend = 0f;
+            loopSEAudioSource.playOnAwake = false;
             loopSEAudioSource.volume = currentSEVolume;
             loopSEAudioSource.loop = true;
             loopSEAudioSource.Play();
+            Debug.Log($"[SoundManager] PlayLoopingSE: '{seName}' currentSEVolume={currentSEVolume} (usedPrefab={(seAudioSourcePrefab!=null)})");
         }
         else
         {
@@ -131,8 +181,13 @@ public class SoundManager : MonoBehaviour
     /// </summary>
     private IEnumerator DestroyAfterPlay(AudioSource source)
     {
-        yield return new WaitForSeconds(source.clip.length);
-        seAudioSources.Remove(source);
-        Destroy(source.gameObject);
+        float wait = 0f;
+        if (source != null && source.clip != null)
+        {
+            wait = source.clip.length;
+        }
+        yield return new WaitForSeconds(wait);
+        if (seAudioSources.Contains(source)) seAudioSources.Remove(source);
+        if (source != null) Destroy(source.gameObject);
     }
 }

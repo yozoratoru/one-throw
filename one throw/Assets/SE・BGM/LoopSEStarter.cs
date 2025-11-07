@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(1)]
 public class LoopSEStarter : MonoBehaviour
 {
     [SerializeField] private string loopSEName = "LoopClip"; // ループ再生したいSE名（例: "EngineLoop"）
